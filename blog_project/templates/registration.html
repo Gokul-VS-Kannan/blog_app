@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/homestyle.css' %}">
+    <style>
+        /* Centering specific to this page */
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="reg-form">
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <label>First Name</label>
+            <input type="text" name="fname" placeholder="First Name" required>
+            <label>Last Name</label>
+            <input type="text" name="lname" placeholder="Last Name" required>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Email" required>
+            <label>Username</label>
+            <input type="text" name="uname" placeholder="Username" required>
+            <label>Password</label>
+            <input type="password" name="pwd" placeholder="Password" required>
+            <label> Confirm Password</label>
+            <input type="password" name="cpwd" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>

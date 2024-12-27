@@ -9,6 +9,13 @@
 </head>
 <body>
     <div class="form-container">
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         <form action="" method="post">
             {% csrf_token %}
             <label>Username</label>
@@ -16,7 +23,7 @@
             <label>Password</label>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
-            <a href="#">Register</a>
+            <a href="{% url 'register' %}">Register</a>
         </form>
     </div>
 </body>

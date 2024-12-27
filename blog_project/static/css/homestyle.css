@@ -19,7 +19,16 @@ body{
     flex-direction: column;
 }
 
+.form-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    color: #d9534f;
+}
 
+.form-container ul li {
+    margin-bottom: 0.5rem;
+}
 
 .form-container label{
     text-align: center;

@@ -57,3 +57,65 @@ body{
     padding-top: 10px;
     text-decoration: none;
 }
+
+/* styling for registration page */
+
+
+
+.reg-form {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    text-align: center; 
+}
+
+
+.reg-form ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    color: #d9534f;
+}
+
+.reg-form ul li {
+    margin-bottom: 0.5rem;
+}
+
+.reg-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: bold;
+    text-align: left; 
+}
+
+.reg-form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.reg-form button {
+    display: block;
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+    background-color: #31d109;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.reg-form button:hover {
+    background-color: #48ff00;
+}

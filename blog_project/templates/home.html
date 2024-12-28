@@ -16,7 +16,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        <form action="" method="post">
+        <form action="{% url 'login_view' %}" method="post">
             {% csrf_token %}
             <label>Username</label>
             <input type="text" name="username" placeholder="Username" required>

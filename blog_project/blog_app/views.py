@@ -9,6 +9,33 @@ from django.contrib import messages
 def home(request):
     return render(request,'home.html')
 
+# login
+def login_view(request):
+    # login querry
+    if request.method=="POST":
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        print(username)
+        print(password)
+        # authenticte the user
+        user = authenticate(request,username=username,password=password)
+
+        # check if user exist or not
+        if user is not None:
+            # if exist then login
+            login(request,user)
+            return redirect('welcome')
+        else:
+            messages.error(request, 'Invalid username or password.')
+            return render(request,'home.html')
+
+
+# logout
+def logout_view(request):
+    logout(request)
+    return redirect('home')
+
+
 # a function for registration purpose
 def register(request):
     # check the method of form if it is post

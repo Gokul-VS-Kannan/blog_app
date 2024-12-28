@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -84,3 +85,8 @@ def register(request):
         return redirect('home')
 
     return render(request, 'registration.html')
+
+# a simple function for displaying welcome page after login
+@login_required
+def welcome(request):
+    return render(request,'loginhome.html')

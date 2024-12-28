@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'css/homestyle.css' }">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 1%;
+            background-color: #333; 
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            
+            
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: flex-end;  
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            flex-wrap: wrap; 
+            overflow-x: auto;
+        }
+
+        .navbar ul li {
+            margin-left: 5px;
+            flex-shrink: 0;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .navbar ul li a:hover {
+            color: #7cf03d;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">My Blog</a>
+        <ul>
+            <li><a href="{% url 'welcome' %}">Home</a></li>
+            <li><a href="#">My Profile</a></li>
+            <li><a href="#">Add Blog</a></li>
+            <li><a href="{% url 'logout_view' %}">Logout</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

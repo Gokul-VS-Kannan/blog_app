@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .profile-nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+        } 
+
+        .profile-nav nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .profile-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .profile-nav ul li {
+            display: inline;
+        }
+
+        .profile-nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 5px 10px;
+        }
+
+        .profile-nav ul li a:hover {
+            color: #7cf03d;
+        }
+
+        .profile{
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .btn-edit{
+            width: 100px;
+            padding: 8px 12px;
+            font-size: 14px;
+            background-color: #7cf03d;
+            border-radius: 20px;
+            cursor: pointer;
+            align-self: center;
+            border: none;
+        }
+        .btn-edit:hover{
+            background-color: #4cd105;
+        }
+        .btn-delete{
+            width: 100px;
+            padding: 8px 12px;
+            font-size: 14px;
+            background-color: #e90b0b;
+            border-radius: 20px;
+            cursor: pointer;
+            align-self: center;
+            border: none;
+        }
+        .btn-delete:hover{
+            background-color: #940303;
+        }
+        button a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-nav">
+        <nav>
+            <a href="#" class="logo">{{user.username}}</a>
+            <ul>
+                <li><a href="{% url 'welcome' %}">Home</a></li>
+                <li><a href="{% url 'profile' %}">My Profile</a></li>
+                <li><a href="{% url 'blogform' %}">Add Blog</a></li>
+                <li><a href="{% url 'logout_view' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="profile">
+        <p><strong>Username</strong>{{user.username}}</p>
+        <p><strong>Full Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+    <div>
+        <h2>MY Blogs</h2>
+            {% for i in blog%}
+            <P><strong>Title:</strong>{{ i.title }}</P>
+            <p><strong>Content:</strong>{{ i.content }}</p>
+            <p><strong>Author:</strong>{{ i.get_user_full_name }}</p>
+            <p><strong>Created on:</strong>{{ i.created_on }}</p>
+            <button class="btn-edit"><a href="{% url 'edit_blog' i.id %}">Edit</a></button>
+            <button class="btn-delete"><a href="{% url 'delete_blog' i.id %}">Delete</a></button>
+            {% endfor %}
+    </div>  
+    
+</body>
+</html>

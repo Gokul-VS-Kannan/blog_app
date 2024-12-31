@@ -92,8 +92,8 @@ def register(request):
 @login_required
 def welcome(request):
     blog=BlogPost.objects.all()
-    
-    return render(request,'loginhome.html')
+
+    return render(request,'loginhome.html'{'blog':blog})
 
 @login_required
 def profile(request):

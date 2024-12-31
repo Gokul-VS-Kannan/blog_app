@@ -91,6 +91,8 @@ def register(request):
 # a simple function for displaying welcome page after login
 @login_required
 def welcome(request):
+    blog=BlogPost.objects.all()
+    
     return render(request,'loginhome.html')
 
 @login_required

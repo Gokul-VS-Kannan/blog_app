@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from .models import BlogPost
+from .forms import BlogPostForm
 
 # Create your views here.
 
@@ -100,3 +102,22 @@ def profile(request):
     user=User.objects.get(username=request.user.username)
     blog=BlogPost.objects.filter(user=request.user)
     return render(request, 'profile.html', {'user': user,'blog':blog})
+
+@login_required
+def blogform(request):
+    form=BlogPostForm
+    return render(request,'add_blog.html',{'form':form})
+
+@login_required
+def add_blog(request):
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST)
+        if form.is_valid():
+            blog = form.save(commit=False)# the commit is set false because user is not set mannualy though the form
+            blog.user = request.user  
+            blog.save()
+            return redirect('profile')
+        else:
+            form = BlogPostForm()
+            return render(request, 'add_blog.html', {'form': form})
+

@@ -136,3 +136,19 @@ def edit_blog(request,blog_id):
 
     return render(request,'edit_blog.html',{'form':form, 'blog':blog})
 
+# function to delete blog
+@login_required
+def delete_blog(request,blog_id):
+    blog = BlogPost.objects.get(id=blog_id,user=request.user)
+
+    # delete the blog
+    blog.delete()
+
+    return redirect('profile')
+
+# function to view blogs
+@login_required
+def blog_view(request,blog_id):
+    blog=BlogPost.objects.get(id=blog_id)
+    return render(request,'blog_view.html',{'blog':blog})
+

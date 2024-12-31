@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .profile-nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+        } 
+
+        .profile-nav nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .profile-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .profile-nav ul li {
+            display: inline;
+        }
+
+        .profile-nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 5px 10px;
+        }
+
+        .profile-nav ul li a:hover {
+            color: #7cf03d;
+        }
+        .blog{
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2{
+            text-align: center;
+        }
+        p{
+            font-size: 20px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        h5{
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-nav">
+        <nav>
+            <a href="#" class="logo">My Blog</a>
+            <ul>
+                <li><a href="{% url 'welcome' %}">Home</a></li>
+                <li><a href="{% url 'profile' %}">My Profile</a></li>
+                <li><a href="{% url 'blogform' %}">Add Blog</a></li>
+                <li><a href="{% url 'logout_view' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="blog">
+        <h2>{{blog.title}}</h2>
+        <p>{{blog.content}}</p>
+        <h5><Strong>By: </Strong>{{blog.get_user_full_name}},{{blog.created_on}}</h5>
+    </div>
+</body>
+</html>

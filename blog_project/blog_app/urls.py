@@ -15,4 +15,6 @@ urlpatterns=[
     path('blogform',views.blogform,name='blogform'),
     path('add_blog',views.add_blog,name='add_blog'),
     path('edit_blog/<int:blog_id>',views.edit_blog,name='edit_blog'),
+    path('delete_blog/<int:blog_id>',views.delete_blog,name='delete_blog'),
+    path('blog_view/<int:blog_id>',views.blog_view,name='blog_view'),
 ]

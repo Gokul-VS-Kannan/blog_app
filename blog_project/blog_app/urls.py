@@ -13,4 +13,6 @@ urlpatterns=[
     path('welcome',views.welcome,name='welcome'),
     path('profile',views.profile,name='profile'),
     path('blogform',views.blogform,name='blogform'),
+    path('add_blog',views.add_blog,name='add_blog'),
+    path('edit_blog/<int:blog_id>',views.edit_blog,name='edit_blog'),
 ]

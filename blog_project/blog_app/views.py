@@ -121,3 +121,18 @@ def add_blog(request):
             form = BlogPostForm()
             return render(request, 'add_blog.html', {'form': form})
 
+
+#function to display the form with existing content and updte it
+@login_required
+def edit_blog(request,blog_id):
+    blog = BlogPost.objects.get(id=blog_id,user=request.user)
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST,instance=blog)
+        if form.is_valid():
+            form.save()
+        return redirect('profile')
+    else:
+        form = BlogPostForm(instance=blog)
+
+    return render(request,'edit_blog.html',{'form':form, 'blog':blog})
+

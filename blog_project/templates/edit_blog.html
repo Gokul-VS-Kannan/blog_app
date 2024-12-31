@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .profile-nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+        } 
+
+        .profile-nav nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .profile-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .profile-nav ul li {
+            display: inline;
+        }
+
+        .profile-nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 5px 10px;
+        }
+
+        .profile-nav ul li a:hover {
+            color: #7cf03d;
+        }
+        .btn{
+            padding-left: 20px;
+        }
+        .btn button{
+            background-color: #5db131;
+            color:white;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            width: 100px;
+            
+        }
+
+        .btn button:hover {
+            background-color: #31790b;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-nav">
+        <nav>
+            <a href="#" class="logo">{{user.username}}</a>
+            <ul>
+                <li><a href="{% url 'welcome' %}">Home</a></li>
+                <li><a href="{% url 'profile' %}">My Profile</a></li>
+                <li><a href="{% url 'blogform' %}">Add Blog</a></li>
+                <li><a href="{% url 'logout_view' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        <h3>Edit Blog</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="btn">
+                <button type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

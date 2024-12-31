@@ -90,3 +90,13 @@ def register(request):
 @login_required
 def welcome(request):
     return render(request,'loginhome.html')
+
+@login_required
+def profile(request):
+    # check the user is authenticted if not redirect to login
+    if not request.user.is_authenticated:
+        return redirect('login_view')
+    # fetching the data of loged in user from User table
+    user=User.objects.get(username=request.user.username)
+    blog=BlogPost.objects.filter(user=request.user)
+    return render(request, 'profile.html', {'user': user,'blog':blog})

@@ -92,10 +92,15 @@ def register(request):
 # a simple function for displaying welcome page after login
 @login_required
 def welcome(request):
-    blog=BlogPost.objects.all()
-
-    return render(request,'loginhome.html',{'blog':blog})
-
+    page=1
+    if request.GET:
+        page=request.GET.get('page',1)
+    blog_content=BlogPost.objects.all()
+    content_paginator=Paginator(blog_content,18)
+    blog_content=content_paginator.get_page(page)
+    
+    return render(request,'loginhome.html',{'blog_content':blog_content})
+   
 @login_required
 def profile(request):
     # check the user is authenticted if not redirect to login

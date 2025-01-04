@@ -116,6 +116,32 @@
             text-decoration: none;
             color: #333;
         }
+        .pag_btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        .pag_btn a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .pag_btn a:hover {
+            background-color: #7cf03d;
+            color: white;
+            border-color: #7cf03d;
+        }
+
+        .pag_btn a span {
+            display: inline-block;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -132,7 +158,7 @@
     </div>
     <div class="blog-container">
         <h2>Blogs</h2>
-        {% for blog_data in blog|blogsize:6 %}
+        {% for blog_data in blog_content|blogsize:6 %}
         <div class="blog-row">
             {% for data in blog_data %}
             <div class="blog-card">
@@ -143,6 +169,17 @@
             {% endfor %}
         </div>
         {% endfor %}
+    </div>
+    <div class="pag_btn">
+        {% if blog_content.has_previous %}
+        <a href="?page={{ blog_content.previous_page_number }}"><span><<</span></a>
+        {% endif %}
+        {% for i in blog_content.paginator.page_range %}
+        <a href="?page={{i}}"><span>{{i}}</span></a>
+        {% endfor %}
+        {% if blog_content.has_next %}
+        <a href="?page={{ blog_content.next_page_number }}"><span>>></span></a>
+        {% endif %}
     </div>
 </body>
 </html>

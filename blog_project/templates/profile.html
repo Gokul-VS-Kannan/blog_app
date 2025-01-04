@@ -93,6 +93,48 @@
             text-decoration: none;
             color: black;
         }
+        .blog{
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .blog p{
+            font-size: 20px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        .blog .title{
+            text-align: center;
+        }
+        .pag_btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        .pag_btn a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .pag_btn a:hover {
+            background-color: #7cf03d;
+            color: white;
+            border-color: #7cf03d;
+        }
+
+        .pag_btn a span {
+            display: inline-block;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -115,14 +157,28 @@
     <div>
         <h2>MY Blogs</h2>
             {% for i in blog%}
-            <P><strong>Title:</strong>{{ i.title }}</P>
-            <p><strong>Content:</strong>{{ i.content }}</p>
-            <p><strong>Author:</strong>{{ i.get_user_full_name }}</p>
-            <p><strong>Created on:</strong>{{ i.created_on }}</p>
-            <button class="btn-edit"><a href="{% url 'edit_blog' i.id %}">Edit</a></button>
-            <button class="btn-delete"><a href="{% url 'delete_blog' i.id %}">Delete</a></button>
+            <div class="blog">
+                <P class="title"><strong>Title:</strong>{{ i.title }}</P>
+                <p><strong>Content:</strong>{{ i.content }}</p>
+                <p><strong>Author:</strong>{{ i.get_user_full_name }}</p>
+                <p><strong>Created on:</strong>{{ i.created_on }}</p>
+                <button class="btn-edit"><a href="{% url 'edit_blog' i.id %}">Edit</a></button>
+                <button class="btn-delete"><a href="{% url 'delete_blog' i.id %}">Delete</a></button>
+            </div>
             {% endfor %}
     </div>  
+
+    <div class="pag_btn">
+        {% if blog.has_previous %}
+        <a href="?page={{ blog.previous_page_number }}"><span><<</span></a>
+        {% endif %}
+        {% for i in blog.paginator.page_range %}
+        <a href="?page={{i}}"><span>{{i}}</span></a>
+        {% endfor %}
+        {% if blog.has_next %}
+        <a href="?page={{ blog.next_page_number }}"><span>>></span></a>
+        {% endif %}
+    </div>
     
 </body>
 </html>

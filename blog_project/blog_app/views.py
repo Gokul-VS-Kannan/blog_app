@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from .models import BlogPost
 from .forms import BlogPostForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -102,8 +103,17 @@ def profile(request):
         return redirect('login_view')
     # fetching the data of loged in user from User table
     user=User.objects.get(username=request.user.username)
+    # initialise the page number to one as default
+    page=1
+    # get page number 
+    if request.GET:
+        page = request.GET.get('page',1)
     blog=BlogPost.objects.filter(user=request.user)
+    # loding paginator
+    blog_paginator=Paginator(blog,1)
+    blog=blog_paginator.get_page(page)
     return render(request, 'profile.html', {'user': user,'blog':blog})
+    
 
 @login_required
 def blogform(request):

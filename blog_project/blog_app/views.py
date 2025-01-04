@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import BlogPost
 from .forms import BlogPostForm
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 # Create your views here.
 
@@ -169,3 +170,20 @@ def blog_view(request,blog_id):
     blog=BlogPost.objects.get(id=blog_id)
     return render(request,'blog_view.html',{'blog':blog})
 
+
+
+# function for search
+def search_blog(request):
+    query = None
+    blog_content = []
+
+    if 'q' in request.GET:
+        query = request.GET.get('q')
+        blog_content = BlogPost.objects.filter(
+            Q(title__icontains=query) |
+            Q(user__first_name__icontains=query) |
+            Q(user__last_name__icontains=query)
+        )
+
+    context = {'blog_content': blog_content, 'query': query}
+    return render(request, 'loginhome.html', context)

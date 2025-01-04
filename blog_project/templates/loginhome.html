@@ -156,6 +156,12 @@
             </ul>
         </nav>
     </div>
+    <div>
+        <form method="get" action="{% url 'search' %}">
+            <input type="text" name="q" placeholder="Search blogs by title or author..." value="{{ query }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
     <div class="blog-container">
         <h2>Blogs</h2>
         {% for blog_data in blog_content|blogsize:6 %}

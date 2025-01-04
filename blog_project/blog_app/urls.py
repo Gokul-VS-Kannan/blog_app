@@ -17,4 +17,5 @@ urlpatterns=[
     path('edit_blog/<int:blog_id>',views.edit_blog,name='edit_blog'),
     path('delete_blog/<int:blog_id>',views.delete_blog,name='delete_blog'),
     path('blog_view/<int:blog_id>',views.blog_view,name='blog_view'),
+    path('search/',views.search_blog,name="search"),
 ]
